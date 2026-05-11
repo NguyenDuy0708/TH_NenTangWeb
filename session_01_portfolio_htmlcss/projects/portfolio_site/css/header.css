@@ -32,8 +32,5 @@ nav a:hover{text-decoration:underline;color:var(--color-primary)}
 	nav{display:none;position:absolute;left:0;right:0;top:56px;background:var(--color-light);padding:0.75rem 1rem;flex-direction:column}
 	.hamburger{display:block}
 	.menu-toggle:checked ~ nav{display:flex}
-	.menu-toggle:checked + .hamburger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
-	.menu-toggle:checked + .hamburger span:nth-child(2){opacity:0}
-	.menu-toggle:checked + .hamburger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
 }
 
