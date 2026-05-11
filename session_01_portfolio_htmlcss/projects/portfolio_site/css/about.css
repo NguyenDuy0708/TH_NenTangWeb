@@ -1,0 +1,12 @@
+:root{--container-max:1100px}
+.container{max-width:var(--container-max);margin:0 auto;padding:2rem 1rem}
+
+.about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:3rem;align-items:center}
+.about-image img{width:100%;max-width:300px;height:auto;border-radius:50%;display:block}
+.about-content h2{font-size:2rem;margin-bottom:0.5rem}
+.about-content .lead{font-size:1.25rem;font-weight:300;margin-bottom:1rem}
+
+@media (max-width:767px){
+    .about-grid{grid-template-columns:1fr;gap:1.25rem;text-align:center}
+    .about-image img{max-width:200px;margin:0 auto}
+}
