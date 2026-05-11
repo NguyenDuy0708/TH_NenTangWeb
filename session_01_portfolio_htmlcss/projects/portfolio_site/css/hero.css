@@ -1,0 +1,24 @@
+@import url(variables.css);
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:2rem 1rem;
+    background:linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.06));
+    color:var(--color-dark, #1e293b);
+}
+
+.hero h1{font-size:3.5rem;margin-bottom:0.75rem}
+.hero .subtitle{font-size:1.25rem;margin-bottom:1.25rem;color:rgba(51,65,85,0.9)}
+
+.cta-button{
+    display:inline-block;padding:0.85rem 1.25rem;border-radius:10px;background:linear-gradient(90deg,var(--color-primary),var(--color-secondary));color:#fff;text-decoration:none;font-weight:600;transition:transform .18s ease,box-shadow .18s ease;box-shadow:0 6px 18px rgba(99,102,241,0.12)
+}
+.cta-button:hover{transform:scale(1.04);box-shadow:0 14px 40px rgba(139,92,246,0.18)}
+
+@media (max-width:767px){.hero h1{font-size:2.5rem}}
+@media (min-width:768px) and (max-width:1023px){.hero h1{font-size:3rem}}
