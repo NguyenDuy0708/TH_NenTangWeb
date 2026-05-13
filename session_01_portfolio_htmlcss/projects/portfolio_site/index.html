@@ -82,14 +82,14 @@
                 </div>
                 <div class="portfolio-grid">
                     <div class="portfolio-item" data-category="web">
-                        <img src="https://via.placeholder.com/400x300" alt="Project 1">
+                        <a href="#lightbox-1" class="lightbox-link"><img src="https://via.placeholder.com/400x300" alt="Project 1"></a>
                         <div class="portfolio-overlay">
                             <h3>E-Commerce Website</h3>
                             <p>React + Node.js</p>
                         </div>
                     </div>
                     <div class="portfolio-item" data-category="web">
-                        <img src="https://via.placeholder.com/400x300?text=Portfolio+Site" alt="Portfolio Site">
+                        <a href="#lightbox-2" class="lightbox-link"><img src="https://via.placeholder.com/400x300?text=Portfolio+Site" alt="Portfolio Site"></a>
                         <div class="portfolio-overlay">
                             <h3>Portfolio Site</h3>
                             <p>HTML &amp; CSS</p>
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="portfolio-item" data-category="web">
-                        <img src="https://via.placeholder.com/400x300?text=Dashboard" alt="Dashboard App">
+                        <a href="#lightbox-3" class="lightbox-link"><img src="https://via.placeholder.com/400x300?text=Dashboard" alt="Dashboard App"></a>
                         <div class="portfolio-overlay">
                             <h3>Analytics Dashboard</h3>
                             <p>Vue.js + D3</p>
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="portfolio-item" data-category="mobile">
-                        <img src="https://via.placeholder.com/400x300?text=Mobile+App" alt="Mobile App">
+                        <a href="#lightbox-4" class="lightbox-link"><img src="https://via.placeholder.com/400x300?text=Mobile+App" alt="Mobile App"></a>
                         <div class="portfolio-overlay">
                             <h3>Mobile App</h3>
                             <p>Flutter</p>
@@ -113,7 +113,7 @@
                     </div>
 
                     <div class="portfolio-item" data-category="mobile">
-                        <img src="https://via.placeholder.com/400x300?text=React+Native" alt="Mobile Game">
+                        <a href="#lightbox-5" class="lightbox-link"><img src="https://via.placeholder.com/400x300?text=React+Native" alt="Mobile Game"></a>
                         <div class="portfolio-overlay">
                             <h3>Mobile Game</h3>
                             <p>React Native</p>
@@ -121,12 +121,37 @@
                     </div>
 
                     <div class="portfolio-item" data-category="design">
-                        <img src="https://via.placeholder.com/400x300?text=Branding" alt="Branding Design">
+                        <a href="#lightbox-6" class="lightbox-link"><img src="https://via.placeholder.com/400x300?text=Branding" alt="Branding Design"></a>
                         <div class="portfolio-overlay">
                             <h3>Branding Concept</h3>
                             <p>Figma</p>
                         </div>
                     </div>
+                </div>
+                <!-- Lightbox containers (CSS-only using :target) -->
+                <div id="lightbox-1" class="lightbox">
+                    <img src="https://via.placeholder.com/1200x900" alt="Project 1 large">
+                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
+                </div>
+                <div id="lightbox-2" class="lightbox">
+                    <img src="https://via.placeholder.com/1200x900?text=Portfolio+Site" alt="Portfolio Site large">
+                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
+                </div>
+                <div id="lightbox-3" class="lightbox">
+                    <img src="https://via.placeholder.com/1200x900?text=Dashboard" alt="Dashboard large">
+                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
+                </div>
+                <div id="lightbox-4" class="lightbox">
+                    <img src="https://via.placeholder.com/1200x900?text=Mobile+App" alt="Mobile App large">
+                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
+                </div>
+                <div id="lightbox-5" class="lightbox">
+                    <img src="https://via.placeholder.com/1200x900?text=React+Native" alt="Mobile Game large">
+                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
+                </div>
+                <div id="lightbox-6" class="lightbox">
+                    <img src="https://via.placeholder.com/1200x900?text=Branding" alt="Branding large">
+                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
                 </div>
             </div>
         </section>

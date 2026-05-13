@@ -11,8 +11,11 @@
 .portfolio-item img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .4s ease}
 .portfolio-item:hover img{transform:scale(1.08)}
 
-.portfolio-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem;background:linear-gradient(to top, rgba(30,41,59,0.85), transparent);opacity:0;transition:opacity .25s ease}
-.portfolio-item:hover .portfolio-overlay{opacity:1}
+.portfolio-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem;background:linear-gradient(to top, rgba(30,41,59,0.85), transparent);opacity:0;transform:translateY(8px);transition:opacity .25s ease, transform .25s ease;color:#fff;text-shadow:0 6px 18px rgba(0,0,0,0.6)}
+.portfolio-item:hover .portfolio-overlay{opacity:1;transform:translateY(0)}
+
+.portfolio-overlay h3{margin:0;font-size:1.125rem;line-height:1}
+.portfolio-overlay p{margin:0.4rem 0 0;font-size:0.95rem;opacity:0.95}
 
 @media (max-width:1023px){
   .portfolio-grid{grid-template-columns:repeat(2,1fr)}
@@ -21,3 +24,9 @@
 @media (max-width:767px){
   .portfolio-grid{grid-template-columns:1fr}
 }
+
+.lightbox{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.92);visibility:hidden;opacity:0;transition:opacity .25s ease, visibility .25s;z-index:2000}
+.lightbox:target{visibility:visible;opacity:1}
+.lightbox img{max-width:92%;max-height:92%;object-fit:contain;border-radius:8px}
+.lightbox-close{position:absolute;top:20px;right:24px;color:#fff;font-size:2.25rem;text-decoration:none;padding:0.25rem 0.5rem}
+.lightbox-close:focus{outline:3px solid rgba(99,102,241,0.18);outline-offset:4px}
