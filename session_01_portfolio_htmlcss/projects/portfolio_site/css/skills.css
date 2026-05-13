@@ -1,0 +1,16 @@
+/* Skills section styles and progress bars */
+.skills-section{padding:2.5rem 0}
+.skills-section h2{margin-bottom:1rem}
+
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.skill-item{margin-bottom:1.25rem}
+.skill-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem}
+.skill-name{font-weight:600}
+.skill-percent{font-size:0.95rem;color:rgba(17,24,39,0.6)}
+
+.skill-bar{background:#e2e8f0;border-radius:10px;overflow:hidden;height:12px}
+.skill-progress{height:100%;width:0;background:linear-gradient(90deg,var(--color-primary),var(--color-secondary));transition:width 1s ease-out}
+
+@media (max-width:767px){
+  .skills-grid{grid-template-columns:1fr}
+}
