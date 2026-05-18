@@ -23,3 +23,28 @@
     background-color: #0d9488;
     border-color: #0d9488;
 }
+
+:root {
+    --bs-primary-hover: #0d9488;
+    --bs-secondary-rgb: 100, 116, 139;
+
+    --custom-success: #22c55e;
+    --custom-warning: #f59e0b;
+    --custom-danger: #ef4444;
+
+    --bs-body-font-family: 'Inter', system-ui, sans-serif;
+    --bs-body-font-size: 1rem;
+    --bs-body-line-height: 1.6;
+
+    --bs-border-radius: 0.5rem;
+    --bs-border-radius-sm: 0.375rem;
+    --bs-border-radius-lg: 1rem;
+}
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.navbar {
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
