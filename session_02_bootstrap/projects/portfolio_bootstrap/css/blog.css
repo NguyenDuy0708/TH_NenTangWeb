@@ -1,6 +1,11 @@
-.sticky-top {
+.sidebar-sticky {
 	position: sticky;
-	top: 100px;
+	top: 100px; /* Below sticky header */
+	z-index: 1;
+}
+.sidebar-sticky {
+	position: sticky;
+	top: 100px; /* Below sticky header */
 	z-index: 1;
 }
 .card {

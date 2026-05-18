@@ -73,10 +73,35 @@
                                 <a href="#" class="btn btn-outline-primary">Read More</a>
                             </div>
                         </article>
+
+                        <div class="card mb-4">
+                            <div class="card-header bg-white">
+                                <h5 class="mb-0">Leave a Comment</h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="comment-name" class="form-label">Name</label>
+                                            <input type="text" class="form-control" id="comment-name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="comment-email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="comment-email" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="comment-text" class="form-label">Comment</label>
+                                        <textarea class="form-control" id="comment-text" rows="4" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-lg-4">
-                        <div class="sticky-top pt-4">
+                        <div class="sidebar-sticky pt-4">
                             <div class="card mb-4">
                                 <div class="card-body">
                                     <h5 class="card-title">Search</h5>
