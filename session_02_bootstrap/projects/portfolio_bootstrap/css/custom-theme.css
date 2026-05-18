@@ -48,3 +48,13 @@
 .navbar {
     box-shadow: 0 2px 15px rgba(0,0,0,0.05);
 }
+:root {
+    --custom-primary: #14b8a6;
+    --custom-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+body {
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    line-height: var(--bs-body-line-height);
+    background-color: #f8fafc;
+}
