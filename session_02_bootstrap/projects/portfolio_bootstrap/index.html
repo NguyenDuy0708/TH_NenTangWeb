@@ -17,34 +17,42 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="logo">YourName</div>
-        <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-hidden="true">
-        <label for="menu-toggle" class="hamburger" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#">YourName</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <main>
-        <section class="hero">
-            <h1>Hi, I'm Duy</h1>
-            <p>Full-Stack Developer | UI Designer | Problem Solver</p>
-            <a href="#portfolio" class="cta-button">View My Work</a>
+        <section class="min-vh-100 d-flex align-items-center justify-content-center text-center text-white"
+            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="container">
+                <h1 class="display-2 fw-bold mb-3">Hi, I'm <span class="text-warning">Duy</span></h1>
+                <p class="lead mb-4 opacity-75">Full-Stack Developer | UI Designer | Problem Solver</p>
+                <a href="#portfolio" class="btn btn-light btn-lg px-5 py-3 fw-semibold">View My Work</a>
+            </div>
         </section>
 
-        <section id="about" class="about-section">
+        <section id="about" class="py-5">
             <div class="container">
-                <div class="about-grid">
-                    <div class="about-image"><img src="images/Anhthe.jpg" alt="Profile Photo"></div>
-                    <div class="about-content">
-                        <h2>About Me</h2>
+                <h2 class="text-center mb-5">About Me</h2>
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-5 text-center">
+                        <img src="images/Anhthe.jpg" class="rounded-circle img-fluid" alt="Profile"
+                            style="max-width: 300px;">
+                    </div>
+                    <div class="col-lg-7">
                         <p class="lead">I'm a passionate developer with 3+ years of experience building web applications.</p>
                         <p>Specialized in Frontend development with React and Vue. Also experienced in Backend with Node.js and Python.</p>
                     </div>
@@ -52,111 +60,116 @@
             </div>
         </section>
 
-        <section id="skills" class="skills-section">
+        <section id="skills" class="py-5 bg-light">
             <div class="container">
-                <h2>My Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <div class="skill-row"><span class="skill-name">HTML5</span><span class="skill-percent">0%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" data-percent="95" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width:0"></div></div>
+                <h2 class="text-center mb-5">My Skills</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-semibold">HTML5</span>
+                                <span class="text-primary fw-semibold">95%</span>
+                            </div>
+                            <div class="progress" style="height: 12px;">
+                                <div class="progress-bar bg-primary" style="width: 95%"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-row"><span class="skill-name">CSS</span><span class="skill-percent">0%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" data-percent="90" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width:0"></div></div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-semibold">CSS</span>
+                                <span class="text-primary fw-semibold">90%</span>
+                            </div>
+                            <div class="progress" style="height: 12px;">
+                                <div class="progress-bar bg-primary" style="width: 90%"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-row"><span class="skill-name">JavaScript</span><span class="skill-percent">0%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" data-percent="85" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width:0"></div></div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-semibold">JavaScript</span>
+                                <span class="text-primary fw-semibold">85%</span>
+                            </div>
+                            <div class="progress" style="height: 12px;">
+                                <div class="progress-bar bg-primary" style="width: 85%"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-row"><span class="skill-name">React</span><span class="skill-percent">0%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" data-percent="80" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width:0"></div></div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-semibold">React</span>
+                                <span class="text-primary fw-semibold">80%</span>
+                            </div>
+                            <div class="progress" style="height: 12px;">
+                                <div class="progress-bar bg-primary" style="width: 80%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="portfolio-section">
+        <section id="portfolio" class="py-5">
             <div class="container">
-                <h2>My Portfolio</h2>
-                <div class="portfolio-filters">
-                    <button class="filter-btn active">All</button>
-                    <button class="filter-btn">Web</button>
-                    <button class="filter-btn">Mobile</button>
-                    <button class="filter-btn">Design</button>
-                </div>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item" data-category="web">
-                        <a href="#lightbox-1" class="lightbox-link"><img src="https://via.placeholder.com/400x300" alt="Project 1"></a>
-                        <div class="portfolio-overlay">
-                            <h3>E-Commerce Website</h3>
-                            <p>React + Node.js</p>
+                <h2 class="mb-4">My Portfolio</h2>
+                <div class="row g-4">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="E-Commerce">
+                            <div class="card-body">
+                                <h5 class="card-title">E-Commerce Website</h5>
+                                <p class="card-text text-muted">React + Node.js</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="portfolio-item" data-category="web">
-                        <a href="#lightbox-2" class="lightbox-link"><img src="https://via.placeholder.com/400x300?text=Portfolio+Site" alt="Portfolio"></a>
-                        <div class="portfolio-overlay">
-                            <h3>Portfolio Site</h3>
-                            <p>HTML &amp; CSS</p>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                            <img src="https://via.placeholder.com/400x300?text=Portfolio+Site" class="card-img-top" alt="Portfolio Site">
+                            <div class="card-body">
+                                <h5 class="card-title">Portfolio Site</h5>
+                                <p class="card-text text-muted">HTML &amp; CSS</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="portfolio-item" data-category="web">
-                        <a href="#lightbox-3" class="lightbox-link"><img src="https://via.placeholder.com/400x300?text=Dashboard" alt="Dashboard App"></a>
-                        <div class="portfolio-overlay">
-                            <h3>Analytics Dashboard</h3>
-                            <p>Vue.js + D3</p>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                            <img src="https://via.placeholder.com/400x300?text=Dashboard" class="card-img-top" alt="Dashboard">
+                            <div class="card-body">
+                                <h5 class="card-title">Analytics Dashboard</h5>
+                                <p class="card-text text-muted">Vue.js + D3</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="portfolio-item" data-category="mobile">
-                        <a href="#lightbox-4" class="lightbox-link"><img src="https://via.placeholder.com/400x300?text=Mobile+App" alt="Mobile App"></a>
-                        <div class="portfolio-overlay">
-                            <h3>Mobile App</h3>
-                            <p>Flutter</p>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                            <img src="https://via.placeholder.com/400x300?text=Mobile+App" class="card-img-top" alt="Mobile App">
+                            <div class="card-body">
+                                <h5 class="card-title">Mobile App</h5>
+                                <p class="card-text text-muted">Flutter</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="portfolio-item" data-category="mobile">
-                        <a href="#lightbox-5" class="lightbox-link"><img src="https://via.placeholder.com/400x300?text=React+Native" alt="Mobile Game"></a>
-                        <div class="portfolio-overlay">
-                            <h3>Mobile Game</h3>
-                            <p>React Native</p>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                            <img src="https://via.placeholder.com/400x300?text=React+Native" class="card-img-top" alt="Mobile Game">
+                            <div class="card-body">
+                                <h5 class="card-title">Mobile Game</h5>
+                                <p class="card-text text-muted">React Native</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="portfolio-item" data-category="design">
-                        <a href="#lightbox-6" class="lightbox-link"><img src="https://via.placeholder.com/400x300?text=Branding" alt="Branding Design"></a>
-                        <div class="portfolio-overlay">
-                            <h3>Branding Concept</h3>
-                            <p>Figma</p>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                            <img src="https://via.placeholder.com/400x300?text=Branding" class="card-img-top" alt="Branding">
+                            <div class="card-body">
+                                <h5 class="card-title">Branding Concept</h5>
+                                <p class="card-text text-muted">Figma</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div id="lightbox-1" class="lightbox">
-                    <img src="https://via.placeholder.com/1200x900" alt="Project 1 large">
-                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
-                </div>
-                <div id="lightbox-2" class="lightbox">
-                    <img src="https://via.placeholder.com/1200x900?text=Portfolio+Site" alt="Portfolio Site large">
-                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
-                </div>
-                <div id="lightbox-3" class="lightbox">
-                    <img src="https://via.placeholder.com/1200x900?text=Dashboard" alt="Dashboard large">
-                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
-                </div>
-                <div id="lightbox-4" class="lightbox">
-                    <img src="https://via.placeholder.com/1200x900?text=Mobile+App" alt="Mobile App large">
-                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
-                </div>
-                <div id="lightbox-5" class="lightbox">
-                    <img src="https://via.placeholder.com/1200x900?text=React+Native" alt="Mobile Game large">
-                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
-                </div>
-                <div id="lightbox-6" class="lightbox">
-                    <img src="https://via.placeholder.com/1200x900?text=Branding" alt="Branding large">
-                    <a href="#portfolio" class="lightbox-close" aria-label="Close">&times;</a>
                 </div>
             </div>
         </section>
