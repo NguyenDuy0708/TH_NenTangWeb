@@ -1,15 +1,39 @@
+/* Sidebar only: sticky below the header */
 .sidebar-sticky {
 	position: sticky;
 	top: 100px; /* Below sticky header */
 	z-index: 1;
 }
-.sidebar-sticky {
-	position: sticky;
-	top: 100px; /* Below sticky header */
-	z-index: 1;
-}
+
+/* Card styling for blog (soft shadow, rounded corners) */
 .card {
 	border: none;
 	box-shadow: 0 2px 15px rgba(0,0,0,0.08);
 	border-radius: 12px;
+}
+
+/* Comment styles */
+.comment img.rounded-circle {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+}
+
+.comment.reply img.rounded-circle {
+	width: 40px;
+	height: 40px;
+}
+
+.comment.reply {
+	border-left: 3px solid #e2e8f0;
+	padding-left: 1rem;
+}
+
+.btn-link {
+	color: var(--bs-primary);
+	text-decoration: none;
+}
+
+.btn-link:hover {
+	color: rgba(13,110,253,0.85);
 }
