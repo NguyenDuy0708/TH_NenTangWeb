@@ -390,6 +390,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeModal();
     });
-
-    showNotification('Phase 5: Ứng dụng sẵn sàng — dữ liệu lưu vào localStorage', 'info');
 });
