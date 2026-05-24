@@ -103,6 +103,57 @@ function resetForm() {
     elements.taskForm.reset();
     editingTaskId = null;
     if (elements.btnSaveTask) elements.btnSaveTask.innerText = 'Lưu công việc';
+    // xóa lỗi hiển thị nếu có
+    clearFieldError(elements.inputTitle);
+    clearFieldError(elements.inputDescription);
+    clearFieldError(elements.inputDeadline);
+    clearFieldError(elements.inputPriority);
+}
+
+function showFieldError(inputEl, message) {
+    if (!inputEl) return;
+    inputEl.classList.add('invalid');
+    inputEl.setAttribute('aria-invalid', 'true');
+    let err = inputEl.nextElementSibling;
+    if (!err || !err.classList.contains('error-message')) {
+        err = document.createElement('div');
+        err.className = 'error-message';
+        inputEl.parentNode.insertBefore(err, inputEl.nextSibling);
+    }
+    err.innerText = message;
+}
+
+function clearFieldError(inputEl) {
+    if (!inputEl) return;
+    inputEl.classList.remove('invalid');
+    inputEl.removeAttribute('aria-invalid');
+    const err = inputEl.nextElementSibling;
+    if (err && err.classList.contains('error-message')) err.remove();
+}
+
+function validateForm() {
+    let valid = true;
+    const title = elements.inputTitle.value.trim();
+    if (!title) {
+        showFieldError(elements.inputTitle, 'Tiêu đề không được để trống');
+        valid = false;
+    }
+    const dl = elements.inputDeadline.value;
+    if (dl) {
+        const ts = Date.parse(dl);
+        if (isNaN(ts)) {
+            showFieldError(elements.inputDeadline, 'Ngày không hợp lệ');
+            valid = false;
+        }
+    }
+    const p = elements.inputPriority.value;
+    if (!['low', 'medium', 'high'].includes(p)) {
+        showFieldError(elements.inputPriority, 'Mức ưu tiên không hợp lệ');
+        valid = false;
+    }
+
+    if (!valid) showNotification('Vui lòng sửa các lỗi trong form', 'error');
+    return valid;
 }
 
 // Render danh sách công việc
@@ -231,17 +282,19 @@ document.addEventListener('DOMContentLoaded', function() {
     if (elements.taskForm) {
         elements.taskForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            const title = elements.inputTitle.value.trim();
-            const description = elements.inputDescription.value.trim();
-            const deadline = elements.inputDeadline.value || '';
-            const priority = elements.inputPriority.value || 'medium';
+        // clear previous errors
+        clearFieldError(elements.inputTitle);
+        clearFieldError(elements.inputDeadline);
+        clearFieldError(elements.inputPriority);
 
-            if (!title) {
-                showNotification('Tiêu đề không được để trống', 'error');
-                return;
-            }
+        if (!validateForm()) return;
 
-            if (editingTaskId) {
+        const title = elements.inputTitle.value.trim();
+        const description = elements.inputDescription.value.trim();
+        const deadline = elements.inputDeadline.value || '';
+        const priority = elements.inputPriority.value || 'medium';
+
+        if (editingTaskId) {
                 // cập nhật
                 const idx = tasks.findIndex(t => String(t.id) === String(editingTaskId));
                 if (idx > -1) {
@@ -249,19 +302,30 @@ document.addEventListener('DOMContentLoaded', function() {
                     tasks[idx].description = description;
                     tasks[idx].deadline = deadline;
                     tasks[idx].priority = priority;
-                    showNotification('Cập nhật công việc thành công');
+            showNotification('Cập nhật công việc thành công', 'success');
                 }
             } else {
                 // tạo mới
-                const newTask = { id: Date.now(), title, description, deadline, priority, completed: false };
+                const newTask = { id: generateId(), title, description, deadline, priority, completed: false };
                 tasks.unshift(newTask);
-                showNotification('Thêm công việc thành công');
+                showNotification('Thêm công việc thành công', 'success');
             }
 
             saveTasks();
             renderTasks();
             updateStatistics();
             closeModal();
+        });
+
+        // clear field errors while user types
+        [elements.inputTitle, elements.inputDescription, elements.inputDeadline, elements.inputPriority].forEach(el => {
+            if (!el) return;
+            el.addEventListener('input', function () {
+                clearFieldError(el);
+            });
+            el.addEventListener('change', function () {
+                clearFieldError(el);
+            });
         });
     }
 
@@ -294,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     saveTasks();
                     renderTasks();
                     updateStatistics();
-                    showNotification('Xóa công việc thành công');
+                    showNotification('Xóa công việc thành công', 'success');
                 }
                 return;
             }
@@ -327,5 +391,5 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Escape') closeModal();
     });
 
-    showNotification('Phase 3: Kết nối sự kiện cơ bản đã sẵn sàng');
+    showNotification('Phase 5: Ứng dụng sẵn sàng — dữ liệu lưu vào localStorage', 'info');
 });

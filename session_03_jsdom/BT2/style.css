@@ -42,7 +42,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #4caf50;
+    background: #0d6efd; /* info by default */
     color: white;
     padding: 15px 20px;
     margin: 20px 20px 0;
@@ -67,6 +67,16 @@ body {
 }
 .notification-close:hover {
     opacity: 0.8;
+}
+
+.notification[data-type="success"] {
+    background: #198754; /* green */
+}
+.notification[data-type="error"] {
+    background: #dc3545; /* red */
+}
+.notification[data-type="info"] {
+    background: #0d6efd; /* blue */
 }
 @keyframes slideDown {
     from {
@@ -436,6 +446,17 @@ body {
     font-family: inherit;
     font-size: 1rem;
     transition: all 0.3s ease;
+}
+
+.form-input.invalid, .form-textarea.invalid, .form-select.invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 3px rgba(220,53,69,0.06);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 6px;
 }
 
 .form-input:focus,
