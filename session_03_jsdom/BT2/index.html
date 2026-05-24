@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý công việc cá nhân</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 id="app-title" class="app-title">Quản lý Công việc Cá nhân</h1>
+                <p id="app-subtitle" class="app-subtitle">Quản lý hiệu quả các nhiệm vụ hàng ngày</p>
+            </div>
+        </header>
+
+        <div id="notification" class="notification hidden">
+            <span id="notification-message" class="notification-message"></span>
+            <button id="notification-close" class="notification-close" title="Đóng thông báo">&times;</button>
+        </div>
+
+        <section class="control-panel">
+            <div class="button-group">
+                <button id="btn-add-task" class="btn btn-primary">+ Thêm công việc</button>
+            </div>
+            <div class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-label">Tổng cộng</div>
+                    <div id="stat-total" class="stat-value">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Đã hoàn thành</div>
+                    <div id="stat-completed" class="stat-value">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Chưa hoàn thành</div>
+                    <div id="stat-pending" class="stat-value">0</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tasks-section">
+            <div id="tasks-list" class="tasks-list">
+                <div id="empty-state" class="empty-state">
+                    <div class="empty-icon">📭</div>
+                    <p class="empty-text">Chưa có công việc nào.</p>
+                    <p class="empty-subtext">Bấm nút "Thêm công việc" để bắt đầu.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="task-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title" class="modal-title">Thêm công việc mới</h2>
+                <button id="btn-close-modal" class="modal-close" title="Đóng">&times;</button>
+            </div>
+
+            <form id="task-form" class="modal-form">
+                <div class="form-group">
+                    <label for="input-title" class="form-label">Tiêu đề công việc <span class="required">*</span></label>
+                    <input type="text" id="input-title" class="form-input" placeholder="Nhập tiêu đề công việc..." required>
+                </div>
+                <div class="form-group">
+                    <label for="input-description" class="form-label">Mô tả</label>
+                    <textarea id="input-description" class="form-textarea" placeholder="Nhập mô tả công việc (tùy chọn)..." rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="input-deadline" class="form-label">Hạn hoàn thành</label>
+                    <input type="date" id="input-deadline" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="input-priority" class="form-label">Mức ưu tiên</label>
+                    <select id="input-priority" class="form-select">
+                        <option value="low">Thấp</option>
+                        <option value="medium" selected>Trung bình</option>
+                        <option value="high">Cao</option>
+                    </select>
+                </div>
+                <div class="form-buttons">
+                    <button  type="button" id="btn-cancel-form" class="btn btn-secondary">Hủy bỏ</button>
+                    <button type="submit" id="btn-save-task" class="btn btn-primary">Lưu công việc</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
