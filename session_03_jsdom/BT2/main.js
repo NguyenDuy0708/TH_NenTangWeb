@@ -39,6 +39,11 @@ elements.modalOverlay = document.querySelector('#task-modal .modal-overlay');
 // bộ đếm thời gian cho thông báo tự động ẩn
 let _notificationTimer = null;
 
+// small unique id generator (fallback)
+function generateId() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2,8);
+}
+
 // Hiển thị thông báo
 function showNotification(message, type = 'success') {
     if (!elements.notification || !elements.notificationMessage) return;
@@ -70,9 +75,9 @@ function openAddModal() {
     if (!elements.taskModal) return;
     editingTaskId = null;
     elements.modalTitle.innerText = 'Thêm công việc mới';
+    if (elements.btnSaveTask) elements.btnSaveTask.innerText = 'Lưu công việc';
     resetForm();
     elements.taskModal.classList.remove('hidden');
-    // focus first input
     setTimeout(() => elements.inputTitle && elements.inputTitle.focus(), 120);
 }
 
@@ -81,7 +86,7 @@ function openEditModal(taskId) {
     if (!elements.taskModal) return;
     editingTaskId = taskId;
     elements.modalTitle.innerText = 'Sửa công việc';
-    // data loading will be implemented in Phase 4
+    if (elements.btnSaveTask) elements.btnSaveTask.innerText = 'Cập nhật công việc';
     elements.taskModal.classList.remove('hidden');
 }
 
@@ -97,17 +102,14 @@ function resetForm() {
     if (!elements.taskForm) return;
     elements.taskForm.reset();
     editingTaskId = null;
+    if (elements.btnSaveTask) elements.btnSaveTask.innerText = 'Lưu công việc';
 }
 
 // Render danh sách công việc
 function renderTasks() {
-    // Phase 3/4: Duyệt mảng tasks và tạo HTML
     if (!elements.tasksList) return;
-    // clear container
     elements.tasksList.innerHTML = '';
-
     if (!tasks || tasks.length === 0) {
-        // re-attach empty state
         if (elements.emptyState) elements.tasksList.appendChild(elements.emptyState);
         return;
     }
@@ -116,14 +118,11 @@ function renderTasks() {
         const card = document.createElement('div');
         card.className = 'task-card' + (task.completed ? ' completed' : '');
         card.dataset.id = task.id;
-
-        // checkbox
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.className = 'task-checkbox';
         checkbox.checked = !!task.completed;
 
-        // content
         const content = document.createElement('div');
         content.className = 'task-content';
 
@@ -155,7 +154,6 @@ function renderTasks() {
             content.appendChild(dl);
         }
 
-        // actions
         const actions = document.createElement('div');
         actions.className = 'task-actions';
 
@@ -174,7 +172,6 @@ function renderTasks() {
         actions.appendChild(btnEdit);
         actions.appendChild(btnDelete);
 
-        // assemble
         card.appendChild(checkbox);
         card.appendChild(content);
         card.appendChild(actions);
@@ -324,6 +321,11 @@ document.addEventListener('DOMContentLoaded', function() {
     loadTasks();
     renderTasks();
     updateStatistics();
+
+    // close modal on ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
 
     showNotification('Phase 3: Kết nối sự kiện cơ bản đã sẵn sàng');
 });
