@@ -101,54 +101,229 @@ function resetForm() {
 
 // Render danh sách công việc
 function renderTasks() {
-    // Phase 4: Duyệt mảng tasks và tạo HTML
+    // Phase 3/4: Duyệt mảng tasks và tạo HTML
+    if (!elements.tasksList) return;
+    // clear container
+    elements.tasksList.innerHTML = '';
+
+    if (!tasks || tasks.length === 0) {
+        // re-attach empty state
+        if (elements.emptyState) elements.tasksList.appendChild(elements.emptyState);
+        return;
+    }
+
+    tasks.forEach(task => {
+        const card = document.createElement('div');
+        card.className = 'task-card' + (task.completed ? ' completed' : '');
+        card.dataset.id = task.id;
+
+        // checkbox
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'task-checkbox';
+        checkbox.checked = !!task.completed;
+
+        // content
+        const content = document.createElement('div');
+        content.className = 'task-content';
+
+        const header = document.createElement('div');
+        header.className = 'task-header';
+
+        const title = document.createElement('div');
+        title.className = 'task-title';
+        title.innerText = task.title || '(Không có tiêu đề)';
+
+        const priority = document.createElement('div');
+        priority.className = 'task-priority ' + (task.priority ? ('priority-' + task.priority) : 'priority-medium');
+        priority.innerText = (task.priority === 'high' ? 'Cao' : task.priority === 'low' ? 'Thấp' : 'Trung bình');
+
+        header.appendChild(title);
+        header.appendChild(priority);
+
+        const desc = document.createElement('div');
+        desc.className = 'task-description';
+        desc.innerText = task.description || '';
+
+        content.appendChild(header);
+        if (task.description) content.appendChild(desc);
+
+        if (task.deadline) {
+            const dl = document.createElement('div');
+            dl.className = 'task-deadline';
+            dl.innerHTML = '<strong>Hạn:</strong> ' + task.deadline;
+            content.appendChild(dl);
+        }
+
+        // actions
+        const actions = document.createElement('div');
+        actions.className = 'task-actions';
+
+        const btnEdit = document.createElement('button');
+        btnEdit.className = 'task-btn task-btn-edit';
+        btnEdit.type = 'button';
+        btnEdit.dataset.id = task.id;
+        btnEdit.innerText = 'Sửa';
+
+        const btnDelete = document.createElement('button');
+        btnDelete.className = 'task-btn task-btn-delete';
+        btnDelete.type = 'button';
+        btnDelete.dataset.id = task.id;
+        btnDelete.innerText = 'Xóa';
+
+        actions.appendChild(btnEdit);
+        actions.appendChild(btnDelete);
+
+        // assemble
+        card.appendChild(checkbox);
+        card.appendChild(content);
+        card.appendChild(actions);
+
+        elements.tasksList.appendChild(card);
+    });
 }
 
 // Cập nhật thống kê
 function updateStatistics() {
-    // Phase 4: Tính toán và hiển thị số liệu
+    if (!elements.statTotal) return;
+    const total = tasks.length;
+    const completed = tasks.filter(t => t.completed).length;
+    const pending = total - completed;
+    elements.statTotal.innerText = total;
+    elements.statCompleted.innerText = completed;
+    elements.statPending.innerText = pending;
 }
 
 // Lưu dữ liệu vào localStorage
 function saveTasks() {
-    // Phase 5: localStorage.setItem(...)
+    try {
+        localStorage.setItem('bt2_tasks', JSON.stringify(tasks));
+    } catch (e) {
+        // ignore
+    }
 }
 
 // Tải dữ liệu từ localStorage
 function loadTasks() {
-    // Phase 5: const data = localStorage.getItem(...); tasks = JSON.parse(data) || [];
+    try {
+        const data = localStorage.getItem('bt2_tasks');
+        tasks = data ? JSON.parse(data) : [];
+    } catch (e) {
+        tasks = [];
+    }
 }
 
 // Khởi tạo
 document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ DOM Loaded');
     console.log('📋 Elements retrieved:', elements);
-    console.log('📋 Ready for Phase 2: Basic DOM manipulation');
-    // Cập nhật nội dung tĩnh
-    if (elements.appTitle) elements.appTitle.innerText = '📋 Quản lý Công việc (Phase 2)';
+    console.log('📋 Ready for Phase 3: Event handling');
+
+    // cập nhật tiêu đề ứng dụng
+    if (elements.appTitle) elements.appTitle.innerText = '📋 Quản lý Công việc';
     if (elements.btnAddTask) elements.btnAddTask.innerText = '+ Thêm công việc';
 
-    // Gán sự kiện cho các nút
+    // kết nối sự kiện UI cơ bản
     elements.btnAddTask && elements.btnAddTask.addEventListener('click', openAddModal);
     elements.btnCloseModal && elements.btnCloseModal.addEventListener('click', closeModal);
     elements.btnCancelForm && elements.btnCancelForm.addEventListener('click', closeModal);
     elements.notificationClose && elements.notificationClose.addEventListener('click', hideNotification);
+    if (elements.modalOverlay) elements.modalOverlay.addEventListener('click', closeModal);
 
-    // modal overlay close
-    if (elements.modalOverlay) {
-        elements.modalOverlay.addEventListener('click', closeModal);
-    }
-
-    // Gán sự kiện cho form
+    // kết nối sự kiện cho form
     if (elements.taskForm) {
         elements.taskForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            // demo behavior for Phase 2
-            showNotification('Form submitted (demo) — Phase 2', 'success');
+            const title = elements.inputTitle.value.trim();
+            const description = elements.inputDescription.value.trim();
+            const deadline = elements.inputDeadline.value || '';
+            const priority = elements.inputPriority.value || 'medium';
+
+            if (!title) {
+                showNotification('Tiêu đề không được để trống', 'error');
+                return;
+            }
+
+            if (editingTaskId) {
+                // cập nhật
+                const idx = tasks.findIndex(t => String(t.id) === String(editingTaskId));
+                if (idx > -1) {
+                    tasks[idx].title = title;
+                    tasks[idx].description = description;
+                    tasks[idx].deadline = deadline;
+                    tasks[idx].priority = priority;
+                    showNotification('Cập nhật công việc thành công');
+                }
+            } else {
+                // tạo mới
+                const newTask = { id: Date.now(), title, description, deadline, priority, completed: false };
+                tasks.unshift(newTask);
+                showNotification('Thêm công việc thành công');
+            }
+
+            saveTasks();
+            renderTasks();
+            updateStatistics();
             closeModal();
         });
     }
 
-    // thông báo sẵn sàng
-    showNotification('Phase 2 ready: you can open the modal and submit the form.');
+    // kết nối sự kiện cho danh sách công việc
+    if (elements.tasksList) {
+        // click cho edit/delete
+        elements.tasksList.addEventListener('click', function (e) {
+            const editBtn = e.target.closest('.task-btn-edit');
+            const deleteBtn = e.target.closest('.task-btn-delete');
+            if (editBtn) {
+                const id = editBtn.dataset.id;
+                const task = tasks.find(t => String(t.id) === String(id));
+                if (task) {
+                    elements.inputTitle.value = task.title || '';
+                    elements.inputDescription.value = task.description || '';
+                    elements.inputDeadline.value = task.deadline || '';
+                    elements.inputPriority.value = task.priority || 'medium';
+                    editingTaskId = id;
+                    elements.modalTitle.innerText = 'Sửa công việc';
+                    elements.taskModal.classList.remove('hidden');
+                    elements.inputTitle.focus();
+                }
+                return;
+            }
+
+            if (deleteBtn) {
+                const id = deleteBtn.dataset.id;
+                if (confirm('Bạn có chắc muốn xóa công việc này?')) {
+                    tasks = tasks.filter(t => String(t.id) !== String(id));
+                    saveTasks();
+                    renderTasks();
+                    updateStatistics();
+                    showNotification('Xóa công việc thành công');
+                }
+                return;
+            }
+        });
+
+        // change cho checkbox
+        elements.tasksList.addEventListener('change', function (e) {
+            const cb = e.target.closest('.task-checkbox');
+            if (cb) {
+                const card = cb.closest('.task-card');
+                const id = card && card.dataset && card.dataset.id;
+                const idx = tasks.findIndex(t => String(t.id) === String(id));
+                if (idx > -1) {
+                    tasks[idx].completed = !!cb.checked;
+                    saveTasks();
+                    renderTasks();
+                    updateStatistics();
+                }
+            }
+        });
+    }
+
+    // Load persisted tasks
+    loadTasks();
+    renderTasks();
+    updateStatistics();
+
+    showNotification('Phase 3: Kết nối sự kiện cơ bản đã sẵn sàng');
 });
