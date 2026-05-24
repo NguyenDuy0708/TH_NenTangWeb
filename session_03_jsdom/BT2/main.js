@@ -1,6 +1,6 @@
 let tasks = [];                    // Mảng lưu danh sách công việc
 let editingTaskId = null;          // ID của công việc đang sửa (null = thêm mới)
-const elements = {
+let elements = {
     // Header
     appTitle: document.getElementById('app-title'),
     appSubtitle: document.getElementById('app-subtitle'),
@@ -33,35 +33,70 @@ const elements = {
     btnSaveTask: document.getElementById('btn-save-task')
 };
 
+// modal overlay (để đóng modal khi click ra ngoài)
+elements.modalOverlay = document.querySelector('#task-modal .modal-overlay');
+
+// bộ đếm thời gian cho thông báo tự động ẩn
+let _notificationTimer = null;
+
 // Hiển thị thông báo
 function showNotification(message, type = 'success') {
-    // Phase 2: Lấy phần tử và thay đổi nội dung
-    // Phase 3: Gắn sự kiện đóng
+    if (!elements.notification || !elements.notificationMessage) return;
+
+    elements.notificationMessage.innerText = message; // cài đặt thông điệp
+
+    elements.notification.dataset.type = type; // cài đặt màu sắc/trạng thái bằng thuộc tính dữ liệu hoặc lớp
+
+    elements.notification.classList.remove('hidden');// hiển thị
+
+    // tự động ẩn sau 4s
+    clearTimeout(_notificationTimer);
+    _notificationTimer = setTimeout(() => {
+        hideNotification();
+    }, 4000);
 }
 
 // Ẩn thông báo
 function hideNotification() {
-    // Phase 2: Ẩn phần tử
+    if (!elements.notification) return;
+    elements.notification.classList.add('hidden');
+    elements.notificationMessage.innerText = '';
+    elements.notification.dataset.type = '';
+    clearTimeout(_notificationTimer);
 }
 
 // Mở modal form (thêm mới)
 function openAddModal() {
-    // Phase 2: Hiển thị modal
+    if (!elements.taskModal) return;
+    editingTaskId = null;
+    elements.modalTitle.innerText = 'Thêm công việc mới';
+    resetForm();
+    elements.taskModal.classList.remove('hidden');
+    // focus first input
+    setTimeout(() => elements.inputTitle && elements.inputTitle.focus(), 120);
 }
 
 // Mở modal form (sửa)
 function openEditModal(taskId) {
-    // Phase 2: Hiển thị modal và nạp dữ liệu
+    if (!elements.taskModal) return;
+    editingTaskId = taskId;
+    elements.modalTitle.innerText = 'Sửa công việc';
+    // data loading will be implemented in Phase 4
+    elements.taskModal.classList.remove('hidden');
 }
 
 // Đóng modal form
 function closeModal() {
-    // Phase 2: Ẩn modal
+    if (!elements.taskModal) return;
+    elements.taskModal.classList.add('hidden');
+    resetForm();
 }
 
 // Reset form về trạng thái ban đầu
 function resetForm() {
-    // Phase 2: Xóa giá trị input
+    if (!elements.taskForm) return;
+    elements.taskForm.reset();
+    editingTaskId = null;
 }
 
 // Render danh sách công việc
@@ -89,4 +124,31 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ DOM Loaded');
     console.log('📋 Elements retrieved:', elements);
     console.log('📋 Ready for Phase 2: Basic DOM manipulation');
+    // Cập nhật nội dung tĩnh
+    if (elements.appTitle) elements.appTitle.innerText = '📋 Quản lý Công việc (Phase 2)';
+    if (elements.btnAddTask) elements.btnAddTask.innerText = '+ Thêm công việc';
+
+    // Gán sự kiện cho các nút
+    elements.btnAddTask && elements.btnAddTask.addEventListener('click', openAddModal);
+    elements.btnCloseModal && elements.btnCloseModal.addEventListener('click', closeModal);
+    elements.btnCancelForm && elements.btnCancelForm.addEventListener('click', closeModal);
+    elements.notificationClose && elements.notificationClose.addEventListener('click', hideNotification);
+
+    // modal overlay close
+    if (elements.modalOverlay) {
+        elements.modalOverlay.addEventListener('click', closeModal);
+    }
+
+    // Gán sự kiện cho form
+    if (elements.taskForm) {
+        elements.taskForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            // demo behavior for Phase 2
+            showNotification('Form submitted (demo) — Phase 2', 'success');
+            closeModal();
+        });
+    }
+
+    // thông báo sẵn sàng
+    showNotification('Phase 2 ready: you can open the modal and submit the form.');
 });
