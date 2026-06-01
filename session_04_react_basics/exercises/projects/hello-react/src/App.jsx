@@ -209,28 +209,50 @@ function App() {
 export default App;*/
 
 // Tier 4
-
+/*
 import NumberState from "./NumberState";
 import StringState from "./StringState";
 import BooleanState from "./BooleanState";
 import MultipleStates from "./MultipleStates";
+import ClickEvents from "./ClickEvents";
+
 function App() {
-  return (
-    <div style={{ fontFamily: "Inter, system-ui, sans-serif", minHeight: "100vh", background: "#f5f7fb" }}>
-      <main id="products" style={{ padding: 24, maxWidth: 1000, margin: "0 auto" }}>
-        <h2 style={{ marginBottom: 12 }}>Products</h2>
+    return (
+        <div style={{ fontFamily: "Inter, system-ui, sans-serif", minHeight: "100vh", background: "#f5f7fb" }}>
+            <main id="products" style={{ padding: 24, maxWidth: 1000, margin: "0 auto" }}>
+                <h2 style={{ marginBottom: 12 }}>Products</h2>
+                                <section style={{ marginTop: 28 }}>
+                                        <h2>Tier 4 — useState examples</h2>
+                                        <div style={{ marginTop: 12 }}>
+                                                <NumberState />
+                                                <StringState />
+                                                <BooleanState />
+                                                <MultipleStates />
+                                        </div>
+                                </section>
+            </main>
+        </div>
+    );
+}
+
+export default App;*/
+
+import ClickEvents from "./ClickEvents";
+
+function App() {
+    return (
+        <div style={{ fontFamily: "Inter, system-ui, sans-serif", minHeight: "100vh", background: "#f5f7fb" }}>
+            <main id="products" style={{ padding: 24, maxWidth: 1000, margin: "0 auto" }}>
+                <h2 style={{ marginBottom: 12 }}>Products</h2>
                 <section style={{ marginTop: 28 }}>
-                    <h2>Tier 4 — useState examples</h2>
+                    <h2>Tier 5 — Events examples</h2>
                     <div style={{ marginTop: 12 }}>
-                        <NumberState />
-                        <StringState />
-                        <BooleanState />
-                        <MultipleStates />
+                        <ClickEvents />
                     </div>
                 </section>
-      </main>
-    </div>
-  );
+            </main>
+        </div>
+    );
 }
 
 export default App;
