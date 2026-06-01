@@ -139,7 +139,6 @@ function FlowDemo() {
 export default FlowDemo;
 */
 //Tier 2:
-/// Bài 2.1 — Hiển thị biến đơn giản 
 /*
 import SimpleVariables from "./SimpleVariables";
 import TernaryDemo from "./TernaryDemo";
