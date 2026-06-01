@@ -215,6 +215,7 @@ import StringState from "./StringState";
 import BooleanState from "./BooleanState";
 import MultipleStates from "./MultipleStates";
 import ClickEvents from "./ClickEvents";
+import InputEvent from "./InputEvent";
 
 function App() {
     return (
@@ -237,8 +238,11 @@ function App() {
 
 export default App;*/
 
+// Tier 5
 import ClickEvents from "./ClickEvents";
-
+import InputEvents from './InputEvents';
+import KeyboardEvents from './KeyboardEvents';
+import FormEvents from './FormEvents';
 function App() {
     return (
         <div style={{ fontFamily: "Inter, system-ui, sans-serif", minHeight: "100vh", background: "#f5f7fb" }}>
@@ -246,8 +250,13 @@ function App() {
                 <h2 style={{ marginBottom: 12 }}>Products</h2>
                 <section style={{ marginTop: 28 }}>
                     <h2>Tier 5 — Events examples</h2>
-                    <div style={{ marginTop: 12 }}>
-                        <ClickEvents />
+                    <div style={{ marginTop: 12, display: 'grid', gap: 12 }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                            <ClickEvents />
+                            <InputEvents />
+                            <KeyboardEvents />
+                            <FormEvents />
+                        </div>
                     </div>
                 </section>
             </main>
