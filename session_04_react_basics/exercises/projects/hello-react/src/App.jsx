@@ -159,7 +159,8 @@ function App() {
 
 export default App;
 */
-
+//Tier 3:
+/*
 import Header from "./components/Header";
 import ProductCard from "./components/ProductCard";
 import Footer from "./components/Footer";
@@ -205,4 +206,27 @@ function App() {
   );
 }
 
-export default App;
+export default App;*/
+
+// Tier 4
+/*
+import NumberState from "./NumberState";
+import StringState from "./StringState";
+function App() {
+  return (
+    <div style={{ fontFamily: "Inter, system-ui, sans-serif", minHeight: "100vh", background: "#f5f7fb" }}>
+      <main id="products" style={{ padding: 24, maxWidth: 1000, margin: "0 auto" }}>
+        <h2 style={{ marginBottom: 12 }}>Products</h2>
+                <section style={{ marginTop: 28 }}>
+                    <h2>Tier 4 — useState examples</h2>
+                    <div style={{ marginTop: 12 }}>
+                        <NumberState />
+                        <StringState />
+                    </div>
+                </section>
+      </main>
+    </div>
+  );
+}
+
+export default App;*/
