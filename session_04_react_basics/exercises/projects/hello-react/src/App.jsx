@@ -109,6 +109,7 @@ export default GoodCounter;
 */
 
 /// Bài 1.3 — Luồng hoạt động (Flow) 
+/*
 import { useState } from "react";
 
 function FlowDemo() {
@@ -136,3 +137,24 @@ function FlowDemo() {
     );
 }
 export default FlowDemo;
+*/
+//Tier 2:
+/// Bài 2.1 — Hiển thị biến đơn giản 
+import SimpleVariables from "./SimpleVariables";
+import TernaryDemo from "./TernaryDemo";
+import AndDemo from "./AndDemo";
+import ListRendering from "./ListRendering";
+
+function App() {
+    return (
+        <div>
+            <h1 style={{ padding: "20px" }}>React Tier 2 examples</h1>
+            <SimpleVariables />
+            <TernaryDemo isLoggedIn={false} />
+            <AndDemo items={["Mục A", "Mục B"]} />
+            <ListRendering />
+        </div>
+    );
+}
+
+export default App;
