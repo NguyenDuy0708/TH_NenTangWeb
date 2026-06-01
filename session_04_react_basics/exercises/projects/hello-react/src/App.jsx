@@ -239,10 +239,15 @@ function App() {
 export default App;*/
 
 // Tier 5
+/*
 import ClickEvents from "./ClickEvents";
 import InputEvents from './InputEvents';
 import KeyboardEvents from './KeyboardEvents';
 import FormEvents from './FormEvents';
+import ListBasics from './ListBasics';
+import CreateItem from './CreateItem';
+import DeleteItem from './DeleteItem';
+import UpdateItem from './UpdateItem';
 function App() {
     return (
         <div style={{ fontFamily: "Inter, system-ui, sans-serif", minHeight: "100vh", background: "#f5f7fb" }}>
@@ -256,6 +261,34 @@ function App() {
                             <InputEvents />
                             <KeyboardEvents />
                             <FormEvents />
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    );
+}
+
+export default App;
+*/
+import ListBasics from './ListBasics';
+import CreateItem from './CreateItem';
+import DeleteItem from './DeleteItem';
+import UpdateItem from './UpdateItem';
+
+function App() {
+    return (
+        <div style={{ fontFamily: "Inter, system-ui, sans-serif", minHeight: "100vh", background: "#f5f7fb" }}>
+            <main id="products" style={{ padding: 24, maxWidth: 1000, margin: "0 auto" }}>
+                <h2 style={{ marginBottom: 12 }}>Products</h2>
+                <section style={{ marginTop: 28 }}>
+                    <h2>Tier 6 — Lists & CRUD</h2>
+                    <div style={{ marginTop: 12, display: 'grid', gap: 12 }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                            <ListBasics />
+                            <CreateItem />
+                            <DeleteItem />
+                            <UpdateItem />
                         </div>
                     </div>
                 </section>
