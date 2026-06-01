@@ -209,9 +209,11 @@ function App() {
 export default App;*/
 
 // Tier 4
-/*
+
 import NumberState from "./NumberState";
 import StringState from "./StringState";
+import BooleanState from "./BooleanState";
+import MultipleStates from "./MultipleStates";
 function App() {
   return (
     <div style={{ fontFamily: "Inter, system-ui, sans-serif", minHeight: "100vh", background: "#f5f7fb" }}>
@@ -222,6 +224,8 @@ function App() {
                     <div style={{ marginTop: 12 }}>
                         <NumberState />
                         <StringState />
+                        <BooleanState />
+                        <MultipleStates />
                     </div>
                 </section>
       </main>
@@ -229,4 +233,4 @@ function App() {
   );
 }
 
-export default App;*/
+export default App;
