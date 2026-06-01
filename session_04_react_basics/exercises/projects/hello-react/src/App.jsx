@@ -140,6 +140,7 @@ export default FlowDemo;
 */
 //Tier 2:
 /// Bài 2.1 — Hiển thị biến đơn giản 
+/*
 import SimpleVariables from "./SimpleVariables";
 import TernaryDemo from "./TernaryDemo";
 import AndDemo from "./AndDemo";
@@ -155,6 +156,54 @@ function App() {
             <ListRendering />
         </div>
     );
+}
+
+export default App;
+*/
+
+import Header from "./components/Header";
+import ProductCard from "./components/ProductCard";
+import Footer from "./components/Footer";
+
+const products = [
+  {
+    id: 1,
+    title: "iPhone 15",
+    price: "25.000.000đ",
+    description: "Màn hình 6.1 inch • Camera 48MP • Pin 3349 mAh",
+    image: "https://via.placeholder.com/400x240?text=iPhone+15"
+  },
+  {
+    id: 2,
+    title: "Galaxy S23",
+    price: "20.000.000đ",
+    description: "Màn hình 6.2 inch • Camera 50MP • Pin 3900 mAh",
+    image: "https://via.placeholder.com/400x240?text=Galaxy+S23"
+  },
+  {
+    id: 3,
+    title: "Pixel 7",
+    price: "18.000.000đ",
+    description: "Màn hình 6.0 inch • Camera 50MP • Android thuần",
+    image: "https://via.placeholder.com/400x240?text=Pixel+7"
+  }
+];
+
+function App() {
+  return (
+    <div style={{ fontFamily: "Inter, system-ui, sans-serif", minHeight: "100vh", background: "#f5f7fb" }}>
+      <Header />
+      <main id="products" style={{ padding: 24, maxWidth: 1000, margin: "0 auto" }}>
+        <h2 style={{ marginBottom: 12 }}>Products</h2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16 }}>
+          {products.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+        <Footer />
+      </main>
+    </div>
+  );
 }
 
 export default App;
